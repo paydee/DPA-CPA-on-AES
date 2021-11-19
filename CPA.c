@@ -81,7 +81,7 @@ int main(){
     char buffer[20];
     freopen("log_CPA.txt", "w", stdout);
 
-    //Read traces
+    //File name process and read traces
     printf("=========================Reading traces===================\n");
     for ( int k = 0; k < 2000; k++){
         strcpy(file_name, "curves/demo_");
@@ -170,7 +170,6 @@ for (int key_th = 0; key_th < 16; key_th++) {
 
     E = clock();
     printf("Total time: %ld\n", (E-S)/CLOCKS_PER_SEC);
-//    fclose(stdout);
     return 0;
 }
 //key:

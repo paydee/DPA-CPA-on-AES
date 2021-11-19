@@ -87,54 +87,15 @@ int main(){
     float delta; //abs(S_0[i] - S_1[i])
     int n_0;
     int n_1;
-    float temp;
+    float max_trace;
     int max_g;
-//    int b = 0;
-//    printf("============Test bit: %d=================\n", b);
-//    for (int j = 0; j < 16; ++j) {
-//        max_g = 0;
-//        temp = 0;
-//        for(int g = 0; g < 256; g++){
-//            for (int i = 0; i < 29000; ++i) {
-//                S_0[i] = 0;
-//                S_1[i] = 0;
-//            }
-//            n_0 = 0;
-//            n_1 = 0;
-//            for(int i = 0; i < 2000; i++){
-//                v = cipher[i][j]^g;
-//                v = invSBOX[v];
-//                v_b = (v >> b) & 1;
-//                if (v_b == 0){
-//                    n_0++;
-//                    for (int k = 0; k < 29000; ++k) {
-//                        S_0[k] += traces[i][k];
-//                    }
-//                } else{
-//                    n_1++;
-//                    for (int k = 0; k < 29000; ++k) {
-//                        S_1[k] += traces[i][k];
-//                    }
-//                }
-//            }
-//            for (int k = 0; k < 29000; ++k) {
-//                S_0[k] = S_0[k]/n_0;
-//                S_1[k] =  S_1[k]/n_1;
-//                delta = fabs(S_1[k] - S_0[k]);
-//                if(temp < delta){
-//                    temp = delta;
-//                    max_g = g;
-//                }
-//            }
-//        }
-//        printf("octet: %d, subkey = %02X\n", j, max_g);
-//
-//    }
+
+
     for (int b = 0; b < 8 ; b ++){
         printf("============Test bit: %d=================\n", b);
         for (int j = 0; j < 16; ++j) {
             max_g = 0;
-            temp = 0;
+            max_trace = 0;
             for(int g = 0; g < 256; g++){
                 for (int i = 0; i < 29000; ++i) {
                     S_0[i] = 0;
@@ -162,62 +123,21 @@ int main(){
                     S_0[k] = S_0[k]/n_0;
                     S_1[k] =  S_1[k]/n_1;
                     delta = fabs(S_1[k] - S_0[k]);
-                    if(temp < delta){
-                        temp = delta;
+                    if(max_trace < delta){
+                        max_trace = delta;
                         max_g = g;
                     }
                 }
             }
-            printf("octet: %d, subkey = %02X\n", j, max_g);
+            printf("Subkey th: %d, guessed subkey = %02X\n", j, max_g);
 
         }
     }
 
-//    for (int j = 0; j < 16; ++j) {
-//        max_g = 0;
-//        temp = 0;
-//        for(int g = 0; g < 256; g++){
-//            for (int i = 0; i < 29000; ++i) {
-//                S_0[i] = 0;
-//                S_1[i] = 0;
-//            }
-//            n_0 = 0;
-//            n_1 = 0;
-//            for(int i = 0; i < 2000; i++){
-//                v = cipher[i][j]^g;
-//                v = invSBOX[v];
-//                v_b = (v<<(7-b))>>7;
-//                if (v_b == 0){
-//                    n_0++;
-//                    for (int k = 0; k < 29000; ++k) {
-//                        S_0[k] += traces[i][k];
-//                    }
-//                } else{
-//                    n_1++;
-//                    for (int k = 0; k < 29000; ++k) {
-//                        S_1[k] += traces[i][k];
-//                    }
-//                }
-//            }
-//            for (int k = 0; k < 29000; ++k) {
-//                S_0[k] = S_0[k]/n_0;
-//                S_1[k] =  S_1[k]/n_1;
-//                delta = fabs(S_1[k] - S_0[k]);
-//                if(temp < delta){
-//                    temp = delta;
-//                    max_g = g;
-//                }
-//            }
-//        }
-//        printf("octet: %d, key = %X\n", j, max_g);
-//
-//    }
-
-//key:
-//D0 14 F9 A8 C9 EE 25 89 E1 3F 0C C8 B6 63 0C A6
 
     return 0;
 }
 /*
+ * Correct key: D0 14 F9 A8 C9 EE 25 89 E1 3F 0C C8 B6 63 0C A6
  *
  */

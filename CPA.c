@@ -164,10 +164,6 @@ for (int key_th = 0; key_th < 16; key_th++) {
         printf("Guessed subkey: %02X correlation: %lf in time: %ld (s)\n", max_g, max_correlation, (e-s)/CLOCKS_PER_SEC);
 
     }
-
-
-
-
     E = clock();
     printf("Total time: %ld\n", (E-S)/CLOCKS_PER_SEC);
     return 0;

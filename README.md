@@ -15,3 +15,4 @@ The repo contains:
 - **DPA_HM.c**: DPA with select function is the HW of the first byte of the processing data right before enter the last round of AES.
 - **CPA.c**: Classic CPA with Hamming weight model of power consumption.
 - **CPA_HD_P.c**: CPA with Hamming distance model of power consumption, parallel programmed.
+- **log_CPA.txt**, **CPA_parallel_log.txt** are execution log for *CPA.c* and *CPA_HD_P.c* repersively. Codes run on the same machine 4 cores, 1000000 clocks/secs
